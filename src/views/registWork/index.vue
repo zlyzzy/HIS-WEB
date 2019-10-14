@@ -733,6 +733,7 @@ export default {
     },
     listRegisteredPatient(){
       listRegisteredPatient(this.queryRegister).then(res=>{
+        console.log(res)
         this.RegisterList = res.data.list
         this.RegisterList.forEach(item=>{
           item.patientDateOfBirth = item.patientDateOfBirth.substr(0,10)

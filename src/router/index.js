@@ -112,6 +112,28 @@ export const constantRoutes = [
       }
     ]
   },
+
+  {
+    path: '/registWork',
+    component: Layout,
+    redirect: '/registWork/index',
+    name: 'pay',
+    meta: {
+      title: '门诊收费挂号',
+      icon: 'money'
+    },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/registWork/index'),
+        name: 'registWork',
+        meta: {
+          title: '门诊挂号收费',
+          noCache: true
+        },
+      },
+    ]
+  },
   
   {
     path: '/',
@@ -274,29 +296,29 @@ export const asyncRoutes = [
       },
     ]
   },
-  {
-    path: '/registWork',
-    component: Layout,
-    redirect: '/registWork/index',
-    name: 'pay',
-    meta: {
-      title: '门诊收费挂号',
-      icon: 'money',
-      roles: [5,7]
-    },
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/registWork/index'),
-        name: 'registWork',
-        meta: {
-          title: '门诊挂号收费',
-          noCache: true,
-          roles: [5,7]
-        },
-      },
-    ]
-  },
+  // {
+  //   path: '/registWork',
+  //   component: Layout,
+  //   redirect: '/registWork/index',
+  //   name: 'pay',
+  //   meta: {
+  //     title: '门诊收费挂号',
+  //     icon: 'money',
+  //     roles: [5,7]
+  //   },
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/registWork/index'),
+  //       name: 'registWork',
+  //       meta: {
+  //         title: '门诊挂号收费',
+  //         noCache: true,
+  //         roles: [5,7]
+  //       },
+  //     },
+  //   ]
+  // },
   {
     path: '/schedule',
     component: Layout,

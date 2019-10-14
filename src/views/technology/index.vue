@@ -57,7 +57,7 @@
           </template>
         </el-table-column>
       </el-table>
-      <el-dialog title="药材补录" :visible.sync="dialogTableVisible" width="1500px" top="10px">
+      <el-dialog title="药材补录" :visible.sync="dialogTableVisible" width="80%" top="10px">
         <el-container>
         <el-aside width="30%" style="padding:0 0 0 0;margin:0 0 0 0">
             <el-tag type="primary" style="width:100%;height:30px">药品目录
@@ -68,11 +68,11 @@
               <el-table-column label="药品名" prop="name"></el-table-column>
               <el-table-column label="价格(元)" prop="price" width="100px"></el-table-column>
             </el-table>
-            <pagination layout="prev, pager, next" auto-scroll="false" style="margin-top:0px" page-sizes="[]"  v-show="total>0" :total="total" :page.sync="page.pageNum" :limit.sync="page.pageSize" @pagination="getdrugList(0)" />
+            <pagination layout="prev, pager, next" :auto-scroll="false" style="margin-top:0px" :page-sizes="[10]"  v-show="total>0" :total="total" :page.sync="page.pageNum" :limit.sync="page.pageSize" @pagination="getdrugList(0)" />
           <div>
           </div>
         </el-aside>
-        <el-main>
+        <el-main style="padding-top:0px !important">
           <el-form label-width="100px" :model="extraname" inline>
             <el-form-item label="补录处方名" >
               <el-input v-model="extraname.name" style="width:200px" placeholder=""></el-input>
@@ -89,7 +89,7 @@
           <el-tag type="primary">项目金额总计:</el-tag>
           <el-tag type="warning">{{oneprescription.amount}}元</el-tag>
           
-          <el-table  height="500px" :data="oneprescription.druglist" cell-style="text-align:center" header-cell-style="text-align:center">
+          <el-table  height="500px" :data="oneprescription.druglist" :cell-style="{'text-align':'center'}" :header-cell-style="{'text-align':'center'}">
               <el-table-column width="50px">
                 <template slot-scope="scope">
                   <el-button type="text" @click="deldrug(scope.row)">删除</el-button>
@@ -278,7 +278,6 @@
           data.typeId = type
         data.name = this.searchdrug
         const response = await getdrugList(data)
-        console.log(response)
         this.drugList = response.data.list
         this.total = response.data.total
       },
