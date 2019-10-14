@@ -224,6 +224,9 @@ export default {
 
   },
   methods:{
+    handleClick(){
+
+    },
     saveNonDrug(){
       let data = {}
       data.dmsNonDrugItemRecordParamList = this.ref

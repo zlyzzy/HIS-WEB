@@ -18,8 +18,7 @@
     :data="prescriptionList"
     tooltip-effect="dark"
     style="width: 100%"
-    cell-style="text-align:center"
-    header-cell-style="text-align:center"
+   :cell-style="{'text-align':'center'}" :header-cell-style="{'text-align':'center'}"
     @selection-change="handleSelectionChange">
     <el-table-column
       align="center"
@@ -117,7 +116,7 @@
        <el-button type="primary" style="float:right" @click="createpre" v-if="!edit">增加处方</el-button>
        <el-button type="primary" style="float:right" @click="changepre" v-if="edit">修改处方</el-button>
       <el-input style="width:200px;margin-right:20px;float:right" v-model="oneprescription.name" placeholder="处方名"></el-input>
-      <el-table  height="500px" :data="oneprescription.druglist" cell-style="text-align:center" header-cell-style="text-align:center">
+      <el-table  height="500px" :data="oneprescription.druglist" :cell-style="{'text-align':'center'}" :header-cell-style="{'text-align':'center'}">
           <el-table-column width="50px">
             <template slot-scope="scope">
               <el-button type="text" @click="deldrug(scope.row)">删除</el-button>
@@ -243,6 +242,9 @@ export default {
     this.listModel()
   },
   methods:{
+    handleClick(){
+
+    },
     addmodel(val){
       val.amount = Math.floor((val.amount+0.5)*100)/100
       val.status = -1

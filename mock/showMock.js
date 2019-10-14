@@ -433,28 +433,259 @@ export default [
   url: '/invoice/queryInvoiceInfoBySettleId',  //根据日结记录id查询发票
   type: 'get',
   response: config => {
-    return {
+    return Mock.mock({
       code: 20000,
-      data: function(){
-        let list =[]
-        for(let i=0;i<=20;i++){
-          list.push(Mock.mock({
-            billId: '@string("number", 6)',
-            createTime:"2018-12-11 11:12:11",
-            'amount|100-10000':100,
-            'invoiceNo':'@string("number", 6)'
-          }))
-        }
-        return list
-      }
-    }
+      'data|1-20':[{
+        billId: '@string("number", 6)',
+        createTime:"2018-12-11 11:12:11",
+        'amount|100-10000':100,
+        'invoiceNo':'@string("number", 6)'
+      }]
+    })
   }
-}
+},
 // ******************门诊财务mock end**********************//
+// *****************门诊医师站mock start**********************//
+
+{
+  url: '/diagnosisPatient/refreshPatient',  
+  type: 'post',
+  response: config => {
+    return Mock.mock({
+      code: 20000,
+      data:{
+        'deptWaitList|1-10':[{//科室等待就诊人
+          patientMedicalRecordNo: '@string("number", 6)',
+          patientName:'@cname',
+          'patientAge|1-100':10,
+          registrationId:'@increment',
+          'patientGender|0-1': 1
+        }],
+        'personalDuringList|1-10':[{ //就诊中
+          patientMedicalRecordNo: '@string("number", 6)',
+          patientName:'@cname',
+          'patientAge|1-100':10,
+          registrationId:'@increment',
+          'patientGender|0-1': 1
+        }],
+        'personalWaitList|1-10':[{//等待就诊
+          patientMedicalRecordNo: '@string("number", 6)',
+          patientName:'@cname',
+          'patientAge|1-100':10,
+          registrationId:'@increment',
+          'patientGender|0-1': 1
+        }],
+        'personalEndList|1-10':[{//已就诊
+          patientMedicalRecordNo: '@string("number", 6)',
+          patientName:'@cname',
+          'patientAge|1-100':10,
+          registrationId:'@increment',
+          'patientGender|0-1': 1
+        }]
+      }
+    })
+  }
+},{
+  url: '/diagnosisPatient/startDiagnosis', //开始就诊 
+  type: 'get',
+  response:config=>{
+    return Mock.mock({
+      code: 20000
+    });
+  }
+},
+{
+  url: '/diagnosisPatient/bindPatient',   //绑定
+  type: 'get',
+  response:config=>{
+    return Mock.mock({
+      code: 20000
+    });
+  }
+},{
+  url: '/frequentUsed/selectByType',   //常用诊断
+  type: 'post',
+  response:config=>{
+    return Mock.mock({
+      code: 20000,
+      data:{
+        'drugList|10':[{//selectType=6
+          'name':'@csentence(5)',
+          'price|10-100':10,
+          'icd':'@string("number", 6)',
+          'code':'@string("number", 6)',
+          'id': '@increment'
+        }],
+        'checkList|10':[{///selectType=1
+          'name':'@csentence(5)',
+          'price|10-100':10,
+          'icd':'@string("number", 6)',
+          'code':'@string("number", 6)',
+          'id': '@increment'
+        }], 
+        'medicineDiseList|10':[{//selectType=2
+          'name':'@csentence(5)',
+          'price|10-100':10,
+          'icd':'@string("number", 6)',
+          'code':'@string("number", 6)',
+          'id': '@increment'
+        }],
+        'dispositionList|10':[{//selectType=3
+          'name':'@csentence(5)',
+          'price|10-100':10,
+          'icd':'@string("number", 6)',
+          'code':'@string("number", 6)',
+          'id': '@increment'
+        }],
+        'testList|10':[{//selectType=4
+          'name':'@csentence(5)',
+          'price|10-100':10,
+          'icd':'@string("number", 6)',
+          'code':'@string("number", 6)',
+          'id': '@increment'
+        }]
+      }
+    });
+  }
+  
+},{
+ 
+  url: '/DmsCaseModel/getAllStaffModel',   //获取病历模板
+  type: 'get',
+  response:config=>{
+    return Mock.mock({
+      code: 20000,
+      data:{
+        'staffList|10-100':[{
+          priliminaryDiseStrList:['疾病1','疾病2','疾病3','疾病14'],
+          name:"@csentence(5)",//病历名称
+          dis:'"@csentence(5)',//主要诊断
+          chiefComplaint:Mock.Random.cparagraph(),//主述：
+          historyOfPresentIllness:Mock.Random.cparagraph(),//现病史：
+          historyOfTreatment:Mock.Random.cparagraph(),//现病治疗情况
+          pastHistory:Mock.Random.cparagraph(),//既往史：
+          allergies:Mock.Random.cparagraph(),//过敏史：
+          healthCheckup:Mock.Random.cparagraph()
+        }]
+      }
+    })
+  }
+
+},{
+  url: '/DmsNonDrug/list',   //添加常用诊断项时候的列表
+  type: 'get',
+  response:config=>{
+    return Mock.mock({
+      code: 20000,
+      data:{
+        'list|1-10':[{
+          'name':'@csentence(5)',
+          'price|10-100':10,
+          'code':'@string("number", 6)',
+        }],
+        total: 10
+      }
+    })
+  }
+},{
+  url: '/NonDrugModel/listModel',   //非药品模板
+  type: 'get',
+  response:config=>{
+    return Mock.mock({
+      code: 20000,
+      data:{
+        'list|1-10':[{
+          id:'@increment',
+          'name':'@csentence(5)',//模板名称
+          'price|10-100':10,
+          'aim':Mock.Random.cparagraph(),
+          'code':'@string("number", 6)',
+          'scope|0-2':0,
+          'type|0-2':0,
+          'nonDrugIdList':[1,2,3,4,5]
+        }],
+        total: 10
+      }
+    })
+  }
+},{
+  url: '/drugModel/listModel',   //药品模板
+  type: 'get',
+  response:config=>{
+    return Mock.mock({
+      code: 20000,
+      data:{
+        'list|1-10':[{
+          id:'@increment',
+          'name':'@csentence(5)',//模板名称
+          'price|10-100':10,
+          'aim':Mock.Random.cparagraph(),
+          'code':'@string("number", 6)',
+          'scope|0-2':0,
+          'type|1-2':1,
+          'dmsMedicineModelItemList|5':[{
+            id:'@increment',
+          
+            "num|1-10":1
+          }]
+        }],
+        total: 10
+      }
+    })
+  }
+},{
+  url: '/drug/selectById',   //
+  type: 'get',
+  response:config=>{
+    return Mock.mock({
+      code: 20000,
+      "data|1-5":[{
+        id:'@increment',
+        'name':'@csentence(5)',//模板名称
+        "price|10-100":10,
+        'mnemonicCode':'@string("number", 6)',
+      
+      }]
+    })
+  }
+},{
+  url: '/DmsDise/list',   //获取诊断目录
+  type: 'get',
+  response:config=>{
+    return Mock.mock({
+      code: 20000,
+      data:{
+        'list|10':[{
+          id:'@increment',
+          'name':'@csentence(5)',
+          'code':'@string("number", 6)',
+          'icd':'@string("number", 6)',
+        }],
+        total:10
+      }
+    })
+  }
+},{
+  url: '/caseHistory/selectEndCaseHistoryByReg/*',   //根据挂号id获取已结束就诊的历史病历
+  type: 'get',
+  response:config=>{
+    return Mock.mock({
+      code: 20000,
+      data:{
+        'dmsCaseHistoryList|10':[{
+          id:'@increment',
+          'createTime':'2019-09-22 11:22:11', //就诊时间
+          'startDate':'2019-09-10 11:22:11',
+          priliminaryDiseStrList:['疾病4','疾病5','疾病6','疾病7'],
+        }]
+      }
+    })
+  }
+
+}
+
+// *****************门诊医师站mock end**********************//
+
 ]
-
-
-
-
 
 

@@ -18,8 +18,7 @@
     :data="prescriptionList"
     tooltip-effect="dark"
     style="width: 100%"
-    cell-style="text-align:center"
-    header-cell-style="text-align:center"
+  :cell-style="{'text-align':'center'}" :header-cell-style="{'text-align':'center'}"
     @selection-change="handleSelectionChange">
     <el-table-column
       align="center"
@@ -137,7 +136,7 @@
       
       <el-tag type="primary">项目金额总计:</el-tag>
       <el-tag type="warning">{{oneprescription.amount}}元</el-tag>
-      <el-table  height="500px" :data="oneprescription.druglist" cell-style="text-align:center" header-cell-style="text-align:center">
+      <el-table  height="500px" :data="oneprescription.druglist" :cell-style="{'text-align':'center'}" :header-cell-style="{'text-align':'center'}">
           <el-table-column width="50px">
             <template slot-scope="scope">
               <el-button type="text" @click="deldrug(scope.row)">删除</el-button>
@@ -267,6 +266,12 @@ export default {
       val.amount = Math.floor((val.amount+0.5)*100)/100
       val.status =-1
       this.prescriptionList.push(val)
+    },
+    handleClick(){
+
+    },
+    getDrugPrescription(){
+
     },
     selectmodel(val){
       this.model = deepClone(val)

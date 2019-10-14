@@ -145,7 +145,7 @@
           <el-tag type="primary">项目金额总计:</el-tag>
           <el-tag type="warning">{{oneprescription.amount}}元</el-tag>
           <el-button type="primary" style="float:right" @click="addDrug">确定</el-button>
-          <el-table  height="500px" :data="oneprescription.druglist" cell-style="text-align:center" header-cell-style="text-align:center">
+          <el-table  height="500px" :data="oneprescription.druglist" :cell-style="{'text-align':'center'}" :header-cell-style="{'text-align':'center'}">
               <el-table-column width="50px">
                 <template slot-scope="scope">
                   <el-button type="text" @click="deldrug(scope.row)">删除</el-button>
@@ -415,6 +415,7 @@ export default {
     },
     async editModel(row){
       this.model = deepClone(row)
+      console.log('drugModel'+this.model);
       this.itemdrugList = this.model.dmsMedicineModelItemList
       this.showaside('edit')
     }

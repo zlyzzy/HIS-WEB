@@ -14,10 +14,10 @@
       <el-form-item label="体格检查"><el-input readonly v-model="prerecord.healthCheckup" type="textarea" :autosize="{ minRows: 1, maxRows: 3}" placeholder="体格检查" style="width:80%;float:right"></el-input></el-form-item>
     </el-form>
     <el-tag style="margin-bottom:20px;margin-left:-20px">检查检验结果:</el-tag>
-    <el-form :model="record"> 
+    <!-- <el-form :model="record"> 
       <el-form-item label="检查结果"><el-input v-model="prerecord.checkResult" placeholder="检查结果" style="width:40%"></el-input></el-form-item>
       <el-form-item label="检验结果"><el-input v-model="prerecord.testResult" placeholder="检验结果" style="width:40%"></el-input></el-form-item>
-    </el-form>
+    </el-form> -->
     <div style="margin-left:-20px;margin-bottom:30px">
       <el-tag>评估诊断:</el-tag>
       <el-card style="width:85%">
@@ -60,7 +60,7 @@
       <el-table-column property="name" label="名称" width="350"></el-table-column>
       <el-table-column property="code" label="编码" width="200"></el-table-column>
     </el-table>
-    <pagination style="margin-top:0px" v-show="total>0" :total="total" page-sizes="[]" :page.sync="disQuery.pageNum" :limit.sync="disQuery.pageSize" @pagination="getDis" />
+    <pagination style="margin-top:0px" v-show="total>0" :total="total" :page-sizes="[]" :page.sync="disQuery.pageNum" :limit.sync="disQuery.pageSize" @pagination="getDis" />
     </div>
   </el-dialog>
   </div>
@@ -120,6 +120,9 @@ export default {
     },
   },
   methods:{
+    handleClick(){
+
+    },
     getmedicineDiseIdList(){
       selectByType({staffId:this.$store.getters.id,selectType:2}).then(res=>{
         this.medicineDiseIdList = res.data.medicineDiseList

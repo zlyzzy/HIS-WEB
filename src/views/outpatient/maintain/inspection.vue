@@ -295,6 +295,8 @@ export default {
           return true
       })
       this.model = deepClone(row)
+      console.log("inspection_检查") 
+      console.log(this.model)
       this.model.createTime = parseTime(this.model.createTime)
       this.showaside('edit')
     }

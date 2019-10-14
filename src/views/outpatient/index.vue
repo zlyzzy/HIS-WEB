@@ -164,6 +164,9 @@ import { truncate } from 'fs';
       this.getPatientList()
     },
     methods: {
+      handleClick(){
+
+      },
       comfirmdms(){
         getnonend(this.patient.registrationId).then(res=>{
           this.comfirmdisabled = true

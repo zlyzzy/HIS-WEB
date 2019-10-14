@@ -219,6 +219,9 @@ export default {
     this.getfreqList()
   },
   methods:{
+    handleClick(){
+
+    },
     showresult(row){
       this.checkresult = row.checkResult
       row.resultImgUrlList.split(',').forEach(item=>{

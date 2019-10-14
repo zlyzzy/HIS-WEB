@@ -197,6 +197,9 @@ export default {
     this.getfreqList()
   },
   methods:{
+    handleClick(){
+
+    },
     saveNonDrug(){
       let data = {}
       data.dmsNonDrugItemRecordParamList = this.ref
