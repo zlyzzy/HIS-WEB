@@ -65,75 +65,75 @@ export const constantRoutes = [
     component: () => import('@/views/error-page/401'),
     hidden: true
   },
-  {
-    path: '/pharmacy',  // 药房相关添加到固定路由里面 就不需要权限了
-    component: Layout,
-    redirect: '/pharmacy/index',
-    meta: {
-      title: '药房工作台',
-      icon: 'tree-table',
-    },
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/pharmacy/index'),
-        name: 'pharmacy',
-        meta: {
-          title: '成药药房工作台',
-          noCache: true,
-        },
-      },
-      {
-        path: 'herbal',
-        component: () => import('@/views/pharmacy/herbal'),
-        name: 'herbal',
-        meta: {
-          title: '草药药房工作台',
-          noCache: true,
-        },
-      },
-    ]
-  },
+  // {
+  //   path: '/pharmacy',  // 药房相关添加到固定路由里面 就不需要权限了
+  //   component: Layout,
+  //   redirect: '/pharmacy/index',
+  //   meta: {
+  //     title: '药房工作台',
+  //     icon: 'tree-table',
+  //   },
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/pharmacy/index'),
+  //       name: 'pharmacy',
+  //       meta: {
+  //         title: '成药药房工作台',
+  //         noCache: true,
+  //       },
+  //     },
+  //     {
+  //       path: 'herbal',
+  //       component: () => import('@/views/pharmacy/herbal'),
+  //       name: 'herbal',
+  //       meta: {
+  //         title: '草药药房工作台',
+  //         noCache: true,
+  //       },
+  //     },
+  //   ]
+  // },
   
-  {
-    path: '/technology',
-    component: Layout,
-    redirect: '/technology/index',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/technology/index'),
-        name: 'technology',
-        meta: {
-          title: '门诊医技工作台',
-          icon: 'skill',
-          noCache: true,
-        }
-      }
-    ]
-  },
+  // {
+  //   path: '/technology',
+  //   component: Layout,
+  //   redirect: '/technology/index',
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/technology/index'),
+  //       name: 'technology',
+  //       meta: {
+  //         title: '门诊医技工作台',
+  //         icon: 'skill',
+  //         noCache: true,
+  //       }
+  //     }
+  //   ]
+  // },
 
-  {
-    path: '/registWork',
-    component: Layout,
-    redirect: '/registWork/index',
-    name: 'pay',
-    meta: {
-      title: '门诊收费挂号',
-      icon: 'money'
-    },
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/registWork/index'),
-        name: 'registWork',
-        meta: {
-          title: '门诊挂号收费',
-          noCache: true
-        },
-      },
-    ]
-  },
+  // {
+  //   path: '/registWork',
+  //   component: Layout,
+  //   redirect: '/registWork/index',
+  //   name: 'pay',
+  //   meta: {
+  //     title: '门诊收费挂号',
+  //     icon: 'money'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/registWork/index'),
+  //       name: 'registWork',
+  //       meta: {
+  //         title: '门诊挂号收费',
+  //         noCache: true
+  //       },
+  //     },
+  //   ]
+  // },
   
   {
     path: '/',
@@ -165,14 +165,13 @@ export const constantRoutes = [
 /* 异步挂载的路由 */
 export const asyncRoutes = [
   {
-    path: '/schedule',
+    path: '/schedule/index',
     component: Layout,
     redirect: '/schedule/index',
     name: 'schedule',
     meta: {
       title: '医生排班管理',
       icon: 'people',
-      roles:[1,7]
     },
     children: [
       {
@@ -183,56 +182,52 @@ export const asyncRoutes = [
       }
     ]
   },
-  // {
-  //   path: '/pharmacy',
-  //   component: Layout,
-  //   redirect: '/pharmacy/index',
-  //   meta: {
-  //     title: '药房工作台',
-  //     icon: 'tree-table',
-  //     roles:[4,7]
-  //   },
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       component: () => import('@/views/pharmacy/index'),
-  //       name: 'pharmacy',
-  //       meta: {
-  //         title: '成药药房工作台',
-  //         noCache: true,
-  //         roles:[4,7]
-  //       },
-  //     },
-  //     {
-  //       path: 'herbal',
-  //       component: () => import('@/views/pharmacy/herbal'),
-  //       name: 'herbal',
-  //       meta: {
-  //         title: '草药药房工作台',
-  //         noCache: true,
-  //         roles:[4,7]
-  //       },
-  //     },
-  //   ]
-  // },
-  // {
-  //   path: '/technology',
-  //   component: Layout,
-  //   redirect: '/technology/index',
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       component: () => import('@/views/technology/index'),
-  //       name: 'technology',
-  //       meta: {
-  //         title: '门诊医技工作台',
-  //         icon: 'skill',
-  //         noCache: true,
-  //         roles:[3,7]
-  //       }
-  //     }
-  //   ]
-  // },
+  {
+    path: '/pharmacy',
+    component: Layout,
+    redirect: '/pharmacy/index',
+    meta: {
+      title: '药房工作台',
+      icon: 'tree-table',
+    },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/pharmacy/index'),
+        name: 'pharmacy',
+        meta: {
+          title: '成药药房工作台',
+          noCache: true,
+        },
+      },
+      {
+        path: 'herbal',
+        component: () => import('@/views/pharmacy/herbal'),
+        name: 'herbal',
+        meta: {
+          title: '草药药房工作台',
+          noCache: true,
+        },
+      },
+    ]
+  },
+  {
+    path: '/technology',
+    component: Layout,
+    redirect: '/technology/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/technology/index'),
+        name: 'technology',
+        meta: {
+          title: '门诊医技工作台',
+          icon: 'skill',
+          noCache: true,
+        }
+      }
+    ]
+  },
   {
     path: '/outpatient',
     component: Layout,
@@ -248,20 +243,18 @@ export const asyncRoutes = [
           icon: 'peoples',
           noCache: true,
           hidden: true,
-          roles:[2,7]
         },
       }
     ]
   },
   {
-    path: '/outpatient',
+    path: '/outpatient/maintain',
     component: Layout,
     redirect: '/outpatient/maintain/mould',
     name: 'mould',
     meta: {
       title: '模板&常用项',
       icon: 'nested',
-      roles:[2,7]
     },
     children: [
       {
@@ -296,29 +289,27 @@ export const asyncRoutes = [
       },
     ]
   },
-  // {
-  //   path: '/registWork',
-  //   component: Layout,
-  //   redirect: '/registWork/index',
-  //   name: 'pay',
-  //   meta: {
-  //     title: '门诊收费挂号',
-  //     icon: 'money',
-  //     roles: [5,7]
-  //   },
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       component: () => import('@/views/registWork/index'),
-  //       name: 'registWork',
-  //       meta: {
-  //         title: '门诊挂号收费',
-  //         noCache: true,
-  //         roles: [5,7]
-  //       },
-  //     },
-  //   ]
-  // },
+  {
+    path: '/registWork',
+    component: Layout,
+    redirect: '/registWork/index',
+    name: 'pay',
+    meta: {
+      title: '门诊收费挂号',
+      icon: 'money',
+    },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/registWork/index'),
+        name: 'registWork',
+        meta: {
+          title: '门诊挂号收费',
+          noCache: true,
+        },
+      },
+    ]
+  },
   {
     path: '/schedule',
     component: Layout,
@@ -354,7 +345,6 @@ export const asyncRoutes = [
         meta: {
           title: '门诊日结',
           noCache: true,
-          roles: [5,7]
         },
       },
       {
@@ -364,7 +354,6 @@ export const asyncRoutes = [
         meta: {
           title: '历史日结',
           noCache: true,
-          roles: [5,7]
         },
       },
     ]
@@ -378,7 +367,6 @@ export const asyncRoutes = [
     meta: {
       title: '用户管理',
       icon: 'lock',
-      roles: [1,7] // you can set roles in root nav
     },
     children: [
       {
@@ -409,8 +397,7 @@ export const asyncRoutes = [
         name: 'check',
         meta: {
           title: '门诊日结核对',
-          noCache: true,
-          roles:[1,6,7]
+          noCache: true
         },
       },
       {
@@ -450,7 +437,6 @@ export const asyncRoutes = [
         meta: {
           title: 'monitor',
           noCache: true,
-          roles:[1,7]
         },
       },
       {
@@ -460,7 +446,6 @@ export const asyncRoutes = [
         meta: {
           title: 'zipkin',
           noCache: true,
-          roles:[1,7]
         },
       },
       {
@@ -470,7 +455,6 @@ export const asyncRoutes = [
         meta: {
           title: 'swagger',
           noCache: true,
-          roles:[1,7]
         },
       },
       {
@@ -480,7 +464,6 @@ export const asyncRoutes = [
         meta: {
           title: 'hystrix',
           noCache: true,
-          roles:[1,7]
         },
       },
       {
@@ -490,7 +473,6 @@ export const asyncRoutes = [
         meta: {
           title: 'kibana',
           noCache: true,
-          roles:[1,7]
         },
       },
     ]

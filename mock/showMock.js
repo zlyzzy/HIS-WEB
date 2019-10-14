@@ -328,12 +328,41 @@ export default [
     }
   }
   
-}
+},
 // ******************挂号mock end**********************//
-
-
-
-
+// ******************门诊财务mock start**********************//
+{
+  url: '/workload/queryDeptPersonalWorkloadList',  //科室工作量统计
+  type: 'post',
+  response: config => {
+    return {
+      code: 20000,
+      data:function(){
+        let list = []
+        for(let i=0;i<=20;i++){
+          list.push(Mock.mock({
+            skdId: '@increment',
+            staffName: '@cname',
+            deptName: '@csentence(5)',
+            'medicineAmount|100-100000': 100,
+            'herbalAmount|100-100000': 100,
+            'checkAmount|100-100000': 100,
+            'testAmount|100-100000': 100,
+            'dispositionAmount|100-100000': 100,
+            'registrationAmount|100-100000': 100,
+            'amount|1000-1000000': 100,
+            'registrationNum|1000-1000000':1000,
+            'excuteCheckAmount|1000-1000000':1000,
+            'excuteTestAmount|1000-1000000':1000,
+            'excuteDispositionAmount|1000-1000000':1000,
+          }))
+        }
+        return list;
+      }
+    }
+  }
+}
+// ******************门诊财务mock end**********************//
 ]
 
 
