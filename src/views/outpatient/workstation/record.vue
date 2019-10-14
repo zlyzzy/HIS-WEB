@@ -124,7 +124,7 @@
       <el-table-column property="name" label="名称" width="350"></el-table-column>
       <el-table-column property="code" label="编码" width="200"></el-table-column>
     </el-table>
-    <pagination :auto-scroll="false" style="margin-top:0px" v-show="total>0" :total="total" :page-sizes="[]" :page.sync="disQuery.pageNum" :limit.sync="disQuery.pageSize" @pagination="getDis" />
+    <pagination :auto-scroll="false" style="margin-top:0px" v-show="total>0" :total="total" page-sizes="[]" :page.sync="disQuery.pageNum" :limit.sync="disQuery.pageSize" @pagination="getDis" />
     </div>
   </el-dialog>
   </div>

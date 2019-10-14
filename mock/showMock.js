@@ -672,11 +672,12 @@ export default [
     return Mock.mock({
       code: 20000,
       data:{
-        'dmsCaseHistoryList|10':[{
+        'dmsCaseHistoryList|10':[{ // record.vue=>病历详情
           id:'@increment',
           'createTime':'2019-09-22 11:22:11', //就诊时间
           'startDate':'2019-09-10 11:22:11',
           priliminaryDiseStrList:['疾病4','疾病5','疾病6','疾病7'],
+          chiefComplaint:Mock.Random.cparagraph(),
         }]
       }
     })
