@@ -392,6 +392,63 @@ export default [
       }
     }
   }
+},{
+  url: '/dailySettlement/listDailySettleListRecord',  //根据时间id查询日结历史
+  type: 'get',
+  response: config => {
+    return {
+      code: 20000,
+      data:function(){
+        let list = [];
+        for(let i=0;i<=20;i++){
+          list.push(Mock.mock({
+            operatorName: '@cname',
+            createDatetme:"2018-12-11 11:12:11",
+            'verifyStatus|0-1':1,
+            'settleRecordId':'@increment'
+          }))
+        }
+        return list;
+      }
+  }
+}
+},{
+  url: '/dailySettlement/querySettleDetailById',  //根据日结记录id查询日结详细信息
+  type: 'get',
+  response: config => {
+    return {
+      code: 20000,
+      data: function(){
+        return {
+          startDatetime:"2018-11-11 11:22:10",
+          endDatetime:"2018-11-12 11:22:10",
+          cashierId:"112332",
+          cashierId:"112332",
+          createDatetime:"2018-12-11 11:10:10"
+        }
+      }
+    }
+  }
+},{
+  url: '/invoice/queryInvoiceInfoBySettleId',  //根据日结记录id查询发票
+  type: 'get',
+  response: config => {
+    return {
+      code: 20000,
+      data: function(){
+        let list =[]
+        for(let i=0;i<=20;i++){
+          list.push(Mock.mock({
+            billId: '@string("number", 6)',
+            createTime:"2018-12-11 11:12:11",
+            'amount|100-10000':100,
+            'invoiceNo':'@string("number", 6)'
+          }))
+        }
+        return list
+      }
+    }
+  }
 }
 // ******************门诊财务mock end**********************//
 ]

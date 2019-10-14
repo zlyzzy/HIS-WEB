@@ -191,6 +191,9 @@ export default {
     };
   },
   methods:{
+    handleClick(){
+
+    },
     verifySettle(){
       let data = {}
       data.verifyOperatorId = this.$store.getters.id
