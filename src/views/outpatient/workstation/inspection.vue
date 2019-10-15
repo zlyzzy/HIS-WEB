@@ -25,7 +25,7 @@
       align="center"
       type="selection"
       width="55"
-      @selection-change="handleSelectionChange">
+     >
     </el-table-column>
     <el-table-column
     align="center"
@@ -81,12 +81,10 @@
       </template>
     </el-table-column>
   </el-table>
-  
-  
   </el-aside>
   <transition name="el-zoom-in-left">
   <el-main width="50%" v-show="isclose" style="border-style: dotted;border-width: 0px 0px 0px 1px;border-color:#C0C0C0;margin-top:-12px">
-     <el-tabs v-model="activeName" @tab-click="handleClick">
+     <el-tabs v-model="activeName">
       <el-tab-pane label="检查模板" name="first">
         
         <el-table highlight-current-row @row-dblclick="addModel" @row-click="selectModel" stripe :data="checkmodels" height="230">
@@ -211,12 +209,12 @@ export default {
    watch:{
     'patient' : function(newVal, oldVal){
       this.patient = newVal
-      this.listRecord()
+      this.listRecord() //获取记录
     },
   },
   created(){
     Promise.all([
-      this.getNondrugList().then(()=>{
+      this.getNondrugList().then(()=>{ //获取常用诊断项时的列表
         this.getmodel()
       })
     ])
@@ -224,9 +222,7 @@ export default {
 
   },
   methods:{
-    handleClick(){
-
-    },
+  
     saveNonDrug(){
       let data = {}
       data.dmsNonDrugItemRecordParamList = this.ref
@@ -265,9 +261,11 @@ export default {
       })
       this.resultvisible = true
     },
+    //点击加入常用检查项目
     addfreitem(val){
       this.selectCheck(val)
     },
+    //获取常用检查项目
     getfreqList(){
       let data = {}
       data.staffId = this.$store.getters.id
@@ -277,6 +275,7 @@ export default {
       })
     },
     addModel(val){
+      console.log(val)
       this.$confirm('是否确定将 模板:'+val.name+' 中的内容导入该患者的检查中', '导入模板', {
           confirmButtonText: '确认',
           cancelButtonText: '取消',
@@ -306,7 +305,7 @@ export default {
       data.pageSize =10000
       data.pageNum = 1
       data.isAdmin = 0
-      await getNondrugModelList(data).then(res=>{
+      await getNondrugModelList(data).then(res=>{ // 非药品模板
         this.checkmodels = res.data.list
         this.checkmodels.forEach(onemodel=>{
           onemodel.nondruglist = []
@@ -349,6 +348,7 @@ export default {
     async listRecord(){
       list(this.patient.registrationId,0).then(res=>{
         this.record = res.data
+        console.log("listRecord:")
         console.log(this.record)
         this.record.forEach(item=>{
           this.checkList.filter(check=>{
@@ -409,12 +409,14 @@ export default {
       this.demandVisible = true
       this.check = deepClone(row)
     },
+    //检查列表项目 添加常用诊断项时候的列表
     async getNondrugList() {
       const response = await getNondrugList(this.listQuery)
       console.log(response)
       this.checkList = response.data.list
       this.total = response.data.total
     },
+   
     selectCheckred(val){
       console.log(val)
       let flag = 1
@@ -428,12 +430,14 @@ export default {
         this.record.push(val)
       this.dialogTableVisible = false
     },
+     //检查项如果在列表不存在则加入
     selectCheck(val){
       this.$confirm('是否添加 '+val.name+' 到该患者?', '添加检查', {
           confirmButtonText: '确认',
           cancelButtonText: '取消',
           type: 'success'
         }).then(()=>{
+          console.log(this.record)
           let flag = 1
           val.status = -1
           this.record.forEach(item=>{
@@ -448,9 +452,11 @@ export default {
           this.dialogTableVisible = false
         })
     },
+    //点击新增项目 弹框添加
     addcheck(){
       this.dialogTableVisible = true
     },
+    //删除检查项 必须是状态为-1的才能删除
     delcheck(){
       this.record = this.record.filter(item=>{
         if(item.status===-1)
@@ -460,6 +466,7 @@ export default {
       })
       
     },
+    //收起展开
     controlfast(){
       this.isclose=!this.isclose
       if(this.mainwidth==="65%")

@@ -149,7 +149,7 @@
               <el-table-column label="药品名" prop="name"></el-table-column>
               <el-table-column label="价格(元)" prop="price" width="100px"></el-table-column>
             </el-table>
-            <pagination layout="prev, pager, next" auto-scroll="false" style="margin-top:0px" page-sizes="[]"  v-show="total2>0" :total="total2" :page.sync="page.pageNum" :limit.sync="page.pageSize" @pagination="getdrugList(0)" />
+            <pagination layout="prev, pager, next" auto-scroll="false" style="margin-top:0px" :sspage-sizes="[]"  v-show="total2>0" :total="total2" :page.sync="page.pageNum" :limit.sync="page.pageSize" @pagination="getdrugList(0)" />
           <div>
           </div>
         </el-aside>

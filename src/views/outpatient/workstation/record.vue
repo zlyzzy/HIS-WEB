@@ -7,7 +7,7 @@
     <el-button type="text" style="margin-left:30px" @click="saveCasePage"><i class="el-icon-upload2" />暂存</el-button>
     <el-button type="text" style="margin-left:30px" @click="getCasePage"><i class="el-icon-download" />取出暂存病历</el-button>
     <el-button style="float:right" @click="controlfast"><i v-show="!isclose" class="el-icon-caret-right" /><i v-show="isclose" class="el-icon-caret-left" />  快捷操作</el-button>
-    <el-form :model="record" label-width="100px">
+    <el-form label-width="100px">
       <el-form-item label="主诉"><el-input v-model="priliminaryDise.chiefComplaint" type="textarea" :autosize="{ minRows: 2, maxRows: 3}" placeholder="主述" style="width:80%"></el-input></el-form-item>
       <el-form-item label="现病史"><el-input v-model="priliminaryDise.historyOfPresentIllness" type="textarea" :autosize="{ minRows: 1, maxRows: 3}" placeholder="现病史" style="width:80%" ></el-input></el-form-item>
       <el-form-item label="现病治疗情况"><el-input v-model="priliminaryDise.historyOfTreatment" type="textarea" :autosize="{ minRows: 1, maxRows: 3}" placeholder="现病治疗情况" style="width:80%"></el-input></el-form-item>
@@ -124,7 +124,7 @@
       <el-table-column property="name" label="名称" width="350"></el-table-column>
       <el-table-column property="code" label="编码" width="200"></el-table-column>
     </el-table>
-    <pagination :auto-scroll="false" style="margin-top:0px" v-show="total>0" :total="total" page-sizes="[]" :page.sync="disQuery.pageNum" :limit.sync="disQuery.pageSize" @pagination="getDis" />
+    <pagination :auto-scroll="false" style="margin-top:0px" v-show="total>0" :total="total" :page-sizes="[]" :page.sync="disQuery.pageNum" :limit.sync="disQuery.pageSize" @pagination="getDis" />
     </div>
   </el-dialog>
   </div>
@@ -269,7 +269,9 @@ export default {
     saveCasePage(){
       let data  =this.priliminaryDise
       data.registrationId = this.patient.registrationId
-      saveCasePage(this.priliminaryDise).then(res=>{
+      data.record = this.record;
+      console.log(JSON.stringify(data))
+      saveCasePage(data).then(res=>{
         this.$notify({
           title: '成功',
           message: '已暂存病历首页',
@@ -282,6 +284,7 @@ export default {
       getCasePage(this.patient.registrationId).then(res=>{
         if(res.data!==null){
           this.priliminaryDise = res.data
+          this.record = res.data.record;
           this.$notify({
             title: '成功',
             message: '已加载暂存病历首页',
@@ -310,6 +313,8 @@ export default {
     },
     submitPriliminaryDise(){
       this.priliminaryDise.registrationId = this.patient.registrationId
+      this.priliminaryDise.priliminaryDiseStrList = "";
+       this.priliminaryDise.priliminaryDiseIdList="";
       this.record.forEach(item=>{
         this.priliminaryDise.priliminaryDiseStrList+=(item.name+',')
         this.priliminaryDise.priliminaryDiseIdList+=(item.id+',')
@@ -320,6 +325,8 @@ export default {
       this.priliminaryDise.gender = this.patient.patientGender
       this.priliminaryDise.startDate = parseTime(this.priliminaryDise.startDate).substr(0,10)
       this.priliminaryDise.ageStr = this.patient.patientAge
+
+    
       submitPriliminaryDise(this.priliminaryDise).then(res=>{
           this.$notify({
             title: '成功',
@@ -327,7 +334,7 @@ export default {
             type: 'success',
             duration: 2000
           })
-          this.$emit('priliminary')
+          this.$emit('priliminary') //执行父级index里面的priliminary
         })
     },
     deleteDis(row){

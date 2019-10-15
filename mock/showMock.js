@@ -572,18 +572,29 @@ export default [
   }
 
 },{
-  url: '/DmsNonDrug/list',   //添加常用诊断项时候的列表
+  url: '/DmsNonDrug/list',   //添加常用诊断项时候的列表getNondrugList
   type: 'get',
   response:config=>{
     return Mock.mock({
       code: 20000,
       data:{
-        'list|1-10':[{
-          'name':'@csentence(5)',
-          'price|10-100':10,
-          'code':'@string("number", 6)',
+        list:[{
+          name:"常用诊断1",
+          price:10,
+          id:1,
+          code:"111"
+        },{
+          id:2,
+          name:"常用诊断2",
+          price:20,
+          code:"222"
+        },{
+          id:3,
+          name:"常用诊断3",
+          price:30,
+          code:"333"
         }],
-        total: 10
+        total:3
       }
     })
   }
@@ -602,7 +613,7 @@ export default [
           'code':'@string("number", 6)',
           'scope|0-2':0,
           'type|0-2':0,
-          'nonDrugIdList':[1,2,3,4,5]
+          'nonDrugIdList':[1,2,3]
         }],
         total: 10
       }
@@ -682,7 +693,74 @@ export default [
       }
     })
   }
+},{
 
+  url: '/caseHistory/selectNotEndCaseHistoryByReg/*',   //根据挂号id获取未结束就诊的历史病历
+  type: 'get',
+  response:config=>{
+    return Mock.mock({
+      code: 20000,
+      data:{
+        'dmsCaseHistoryList|10':[{ 
+          id:'@increment',
+          'createTime':'2019-09-22 11:22:11', //就诊时间
+          'startDate':'2019-09-10 11:22:11',
+          priliminaryDiseStrList:['疾病4','疾病5','疾病6','疾病7'],
+          chiefComplaint:Mock.Random.cparagraph(),
+        }]
+      }
+    })
+  }
+
+ 
+},{
+  url: '/redisSave/getCasePage',   //暂存之后取出病历首页
+  type: 'post',
+  response:config=>{
+    return Mock.mock({
+      code: 20000,
+      data:{
+        "chiefComplaint":"主诉",
+        "historyOfPresentIllness":"现病史",
+        "historyOfTreatment":"现病治疗情况",
+        "pastHistory":"既往史",
+        "allergies":"过敏史",
+        "healthCheckup":"体格检查",
+        "startDate":"2019-10-06T16:00:00.000Z",
+        "registrationId":282928,
+        "record":[{"id":283461,"name":"业例比问基。",
+        "code":"527174","icd":"288724"},{"id":283473,"name":"建除被值意。","code":"654170","icd":"252217"}]
+      }
+    })
+  }
+},{
+  url: '/nonDrugItemRecord/listByRegAndType',   //获取检查列表
+  type: 'post',
+  response:config=>{
+    return Mock.mock({
+      code: 20000,
+
+      "data|5":[{
+        "noDrugId|1-3":'1',
+        "code":'@increment',
+        "name":"@cname",
+        "excuteDeptName":"@csentence(6)",
+        "format":"瓶",
+        "price|10-100":10,
+        "status|0-4":0
+      }]
+    })
+  }
+},{
+  url: '/caseHistory/submitPriliminaryDise',   //提交初诊
+  type: 'post',
+  response:config=>{
+    return Mock.mock({
+      code: 20000
+    })
+  }
+
+  
 }
 
 // *****************门诊医师站mock end**********************//
