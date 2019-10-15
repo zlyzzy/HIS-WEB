@@ -70,7 +70,7 @@ export default [
   type: 'post',
   response: config => {
     return {
-      code: 20000,
+      code: 0,
       data: {
         undoPatientList:patientList,
         donePatientList: patientList
@@ -83,7 +83,7 @@ export default [
   type: 'post',
   response: config => {
     return {
-      code: 20000,
+      code: 0,
       data: []
     }
   }
@@ -92,7 +92,7 @@ export default [
   type: 'post',
   response: config => {
     return {
-      code: 20000,
+      code: 0,
       data: []
     }
   }
@@ -101,7 +101,7 @@ export default [
   type: 'post',
   response: config => {
     return {
-      code: 20000,
+      code: 0,
       data: listByIds
     }
   }
@@ -110,7 +110,7 @@ export default [
   type: 'post',
   response: config => {
     return {
-      code: 20000,
+      code: 0,
       data: listByIds2
     }
   }  
@@ -122,16 +122,16 @@ export default [
   type: 'post',
   response: config => {
     return {
-      code: 20000,
+      code: 0,
       data: getMechlist
     }
   }  
 },{
-  url: '/drug/selectDrug', 
+  url: '/drug/selectDrug', //getdrugList 获取药品
   type: 'post',
   response: config => {
     return {
-      code: 20000,
+      code: 0,
       data: {
         list: [{
           name:"药品名称1",
@@ -161,7 +161,7 @@ export default [
   type: 'post',
   response: config => {
     return {
-      code: 20000
+      code: 0
     }
   }  
 },{
@@ -169,7 +169,7 @@ export default [
   type: 'get',
   response: config => {
     return {
-      code: 20000,
+      code: 0,
       data:{
         policy: '1111',
         signature: '1111',
@@ -185,7 +185,7 @@ export default [
   type: 'post',
   response: config => {
     return {
-      code: 20000
+      code: 0
     }
   }  
 
@@ -200,7 +200,7 @@ export default [
   type: 'get',
   response: config => {
     return {
-      code: 20000,
+      code: 0,
       data:{
         list:function(){
           let list = [];
@@ -228,7 +228,7 @@ export default [
   type: 'get',
   response: config => {
    return {
-     code: 20000,
+     code: 0,
      data:function(){
        let list = []
        for(let i=0;i<=10;i++){
@@ -248,7 +248,7 @@ export default [
   type: 'get',
   response: config => {
    return {
-     code: 20000,
+     code: 0,
      data:function(){
        let list = [{
          id:1,
@@ -274,7 +274,7 @@ export default [
   type: 'post',
   response: config => {
     return {
-      code: 20000,
+      code: 0,
       data:function(){
         let list = []
         for(let i=0;i<=10;i++){
@@ -296,7 +296,7 @@ export default [
   type: 'post',
   response: config => {
     return {
-      code: 20000
+      code: 0
     }
   }
 
@@ -306,7 +306,7 @@ export default [
   type: 'post',
   response: config => {
     return {
-      code: 20000,
+      code: 0,
       data:{
         name:"张三",
         dateOfBirth:"1989-12-20",
@@ -324,7 +324,7 @@ export default [
   type: 'post',
   response: config => {
     return {
-      code: 20000
+      code: 0
     }
   }
   
@@ -336,7 +336,7 @@ export default [
   type: 'post',
   response: config => {
     return {
-      code: 20000,
+      code: 0,
       data:function(){
         let list = []
         for(let i=0;i<=20;i++){
@@ -367,7 +367,7 @@ export default [
   type: 'post',
   response: config => {
     return {
-      code: 20000,
+      code: 0,
       data:function(){
         let list = []
         for(let i=0;i<=20;i++){
@@ -397,7 +397,7 @@ export default [
   type: 'get',
   response: config => {
     return {
-      code: 20000,
+      code: 0,
       data:function(){
         let list = [];
         for(let i=0;i<=20;i++){
@@ -417,7 +417,7 @@ export default [
   type: 'get',
   response: config => {
     return {
-      code: 20000,
+      code: 0,
       data: function(){
         return {
           startDatetime:"2018-11-11 11:22:10",
@@ -434,7 +434,7 @@ export default [
   type: 'get',
   response: config => {
     return Mock.mock({
-      code: 20000,
+      code: 0,
       'data|1-20':[{
         billId: '@string("number", 6)',
         createTime:"2018-12-11 11:12:11",
@@ -452,7 +452,7 @@ export default [
   type: 'post',
   response: config => {
     return Mock.mock({
-      code: 20000,
+      code: 0,
       data:{
         'deptWaitList|1-10':[{//科室等待就诊人
           patientMedicalRecordNo: '@string("number", 6)',
@@ -490,7 +490,7 @@ export default [
   type: 'get',
   response:config=>{
     return Mock.mock({
-      code: 20000
+      code: 0
     });
   }
 },
@@ -499,34 +499,38 @@ export default [
   type: 'get',
   response:config=>{
     return Mock.mock({
-      code: 20000
+      code: 0
     });
   }
 },{
-  url: '/frequentUsed/selectByType',   //常用诊断
+  url: '/frequentUsed/selectByType',   //常用项目汇总
   type: 'post',
   response:config=>{
     return Mock.mock({
-      code: 20000,
+      code: 0,
       data:{
         'drugList|10':[{//selectType=6
           'name':'@csentence(5)',
           'price|10-100':10,
           'icd':'@string("number", 6)',
           'code':'@string("number", 6)',
+          'format':'瓶',
           'id': '@increment'
         }],
         'checkList|10':[{///selectType=1
           'name':'@csentence(5)',
           'price|10-100':10,
+          'format':'瓶',
           'icd':'@string("number", 6)',
           'code':'@string("number", 6)',
-          'id': '@increment'
+          'id': '@increment',
+          "deptName":"@csentence(6)"
         }], 
         'medicineDiseList|10':[{//selectType=2
           'name':'@csentence(5)',
           'price|10-100':10,
           'icd':'@string("number", 6)',
+          'format':'瓶',
           'code':'@string("number", 6)',
           'id': '@increment'
         }],
@@ -534,12 +538,14 @@ export default [
           'name':'@csentence(5)',
           'price|10-100':10,
           'icd':'@string("number", 6)',
+          'format':'瓶',
           'code':'@string("number", 6)',
           'id': '@increment'
         }],
         'testList|10':[{//selectType=4
           'name':'@csentence(5)',
           'price|10-100':10,
+          'format':'瓶',
           'icd':'@string("number", 6)',
           'code':'@string("number", 6)',
           'id': '@increment'
@@ -554,7 +560,7 @@ export default [
   type: 'get',
   response:config=>{
     return Mock.mock({
-      code: 20000,
+      code: 0,
       data:{
         'staffList|10-100':[{
           priliminaryDiseStrList:['疾病1','疾病2','疾病3','疾病14'],
@@ -572,27 +578,33 @@ export default [
   }
 
 },{
-  url: '/DmsNonDrug/list',   //添加常用诊断项时候的列表getNondrugList
+  url: '/DmsNonDrug/list',   //getNondrugList  新增检查项目列表  用处比较多
   type: 'get',
   response:config=>{
     return Mock.mock({
-      code: 20000,
+      code: 0,
       data:{
         list:[{
           name:"常用诊断1",
           price:10,
           id:1,
-          code:"111"
+          code:"111",
+          format:"瓶",
+          "deptName":"@csentence(6)"
         },{
           id:2,
           name:"常用诊断2",
           price:20,
-          code:"222"
+          format:"瓶",
+          code:"222",
+          "deptName":"@csentence(6)"
         },{
           id:3,
           name:"常用诊断3",
+          format:"瓶",
           price:30,
-          code:"333"
+          code:"333",
+          "deptName":"@csentence(6)"
         }],
         total:3
       }
@@ -603,7 +615,7 @@ export default [
   type: 'get',
   response:config=>{
     return Mock.mock({
-      code: 20000,
+      code: 0,
       data:{
         'list|1-10':[{
           id:'@increment',
@@ -620,11 +632,11 @@ export default [
     })
   }
 },{
-  url: '/drugModel/listModel',   //药品模板
+  url: '/drugModel/listModel',   //药品模板listModel
   type: 'get',
   response:config=>{
     return Mock.mock({
-      code: 20000,
+      code: 0,
       data:{
         'list|1-10':[{
           id:'@increment',
@@ -634,9 +646,15 @@ export default [
           'code':'@string("number", 6)',
           'scope|0-2':0,
           'type|1-2':1,
+          'amount|10-100':10,
           'dmsMedicineModelItemList|5':[{
             id:'@increment',
-          
+            frequency:"",
+            medicalAdvice:"建议",
+            medicineUsage:"药品使用",
+            usageMeans:"使用方式",
+            usageNum:"用量",
+            usageNumUnit:"usageNumUnit111",
             "num|1-10":1
           }]
         }],
@@ -649,14 +667,16 @@ export default [
   type: 'get',
   response:config=>{
     return Mock.mock({
-      code: 20000,
-      "data|1-5":[{
+      code: 0,
+      "data":{
         id:'@increment',
         'name':'@csentence(5)',//模板名称
         "price|10-100":10,
+        format:"瓶",
+        "num|1-10":1,
         'mnemonicCode':'@string("number", 6)',
       
-      }]
+      }
     })
   }
 },{
@@ -664,7 +684,7 @@ export default [
   type: 'get',
   response:config=>{
     return Mock.mock({
-      code: 20000,
+      code: 0,
       data:{
         'list|10':[{
           id:'@increment',
@@ -681,25 +701,26 @@ export default [
   type: 'get',
   response:config=>{
     return Mock.mock({
-      code: 20000,
+      code: 0,
       data:{
         'dmsCaseHistoryList|10':[{ // record.vue=>病历详情
           id:'@increment',
           'createTime':'2019-09-22 11:22:11', //就诊时间
           'startDate':'2019-09-10 11:22:11',
           priliminaryDiseStrList:['疾病4','疾病5','疾病6','疾病7'],
-          chiefComplaint:Mock.Random.cparagraph(),
+          chiefComplaint:Mock.Random.cparagraph()
+          
         }]
       }
     })
   }
 },{
 
-  url: '/caseHistory/selectNotEndCaseHistoryByReg/*',   //根据挂号id获取未结束就诊的历史病历
+  url: '/caseHistory/selectNotEndCaseHistoryByReg/*',   //根据挂号id获取未结束就诊的历史病历getnonend
   type: 'get',
   response:config=>{
     return Mock.mock({
-      code: 20000,
+      code: 0,
       data:{
         'dmsCaseHistoryList|10':[{ 
           id:'@increment',
@@ -707,6 +728,7 @@ export default [
           'startDate':'2019-09-10 11:22:11',
           priliminaryDiseStrList:['疾病4','疾病5','疾病6','疾病7'],
           chiefComplaint:Mock.Random.cparagraph(),
+          status:2
         }]
       }
     })
@@ -718,7 +740,7 @@ export default [
   type: 'post',
   response:config=>{
     return Mock.mock({
-      code: 20000,
+      code: 0,
       data:{
         "chiefComplaint":"主诉",
         "historyOfPresentIllness":"现病史",
@@ -738,16 +760,18 @@ export default [
   type: 'post',
   response:config=>{
     return Mock.mock({
-      code: 20000,
+      code: 0,
 
       "data|5":[{
         "noDrugId|1-3":'1',
-        "code":'@increment',
+        'id':'@increment',
+        "code":'@string("number", 6)',
         "name":"@cname",
         "excuteDeptName":"@csentence(6)",
         "format":"瓶",
         "price|10-100":10,
-        "status|0-4":0
+        "status|0-4":0,
+        resultImgUrlList:"1,2,3"
       }]
     })
   }
@@ -756,11 +780,122 @@ export default [
   type: 'post',
   response:config=>{
     return Mock.mock({
-      code: 20000
+      code: 0
     })
   }
+},{
+  url: '/nonDrugItemRecord/apply',   //开立项目
+  type: 'post',
+  response:config=>{
+    return Mock.mock({
+      code: 0
+    })
+  }
+ 
+},
 
+{
+
+  url: '/redisSave/saveNonDrug',   //勾选暂存检查项目
+  type: 'post',
+  response:config=>{
+    return Mock.mock({
+      code: 0
+    })
+  }
+},{
+  url: '/redisSave/getNonDrug',   //取出暂存项目
+  type: 'post',
+  response:config=>{
+    return Mock.mock({
+      code: 0,
+      data:{
+        'dmsNonDrugItemRecordParamList|5':[{
+          "noDrugId|1-3":'1',
+          'id':'@increment',
+          "code":'@string("number", 6)',
+          "name":"@cname",
+          // "excuteDeptName":"@csentence(6)",
+          "deptName":"@csentence(6)",
+          "format":"瓶",
+          "price|10-100":10,
+          "status|0-4":0,
+          resultImgUrlList:"1,2,3"
+        }]
+      }
+    })
+  }
+},{
   
+  url: '/caseHistory/endDiagnosis',   //Z诊毕
+  type: 'post',
+  response:config=>{
+    return Mock.mock({
+      code: 0
+    })
+  }
+ 
+},{
+  url: '/caseHistory/submitDefiniteDise',   //确诊
+  type: 'post',
+  response:config=>{
+    return Mock.mock({
+      code: 0
+    })
+  }
+},{
+  url: '/DmsDise/parseList',  
+  type: 'post',
+  response:config=>{
+    return Mock.mock({
+      code: 0,
+      'data':[{
+        icd: '1111',
+        name:"测试1",
+        code:'111111',
+        id:1
+      },{
+        icd: '2222',
+        name:"测试12",
+        code:'222222',
+        id:2
+      }]
+    })
+  }
+},
+{
+  url: '/DmsMedicinePrescriptionRecord/listByReg', //listByReg 处方列表
+  type: 'post',
+  response:config=>{
+    return Mock.mock({
+      code: 0,
+      'data|10':[{
+        name:"处方名称1",
+        amount: 100,
+        druglist:[{
+          id:1,
+          name:"药品名称1",
+          price:20,
+          format:"100mg",
+          dosage:{
+            name:"ww"
+          },
+          medicalAdvice:"一天一粒"
+        }],
+        'status|-1-4': -1
+      }]
+    })
+  }
+  
+},{
+  url: '/DmsMedicinePrescriptionRecord/invalid', //invalid 作废项目
+  type: 'post',
+  response:config=>{
+    return Mock.mock({
+      code: 0
+    })
+  }
+ 
 }
 
 // *****************门诊医师站mock end**********************//

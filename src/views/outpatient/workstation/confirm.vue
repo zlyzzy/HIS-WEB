@@ -14,10 +14,10 @@
       <el-form-item label="体格检查"><el-input readonly v-model="prerecord.healthCheckup" type="textarea" :autosize="{ minRows: 1, maxRows: 3}" placeholder="体格检查" style="width:80%;float:right"></el-input></el-form-item>
     </el-form>
     <el-tag style="margin-bottom:20px;margin-left:-20px">检查检验结果:</el-tag>
-    <!-- <el-form :model="record"> 
+    <el-form> 
       <el-form-item label="检查结果"><el-input v-model="prerecord.checkResult" placeholder="检查结果" style="width:40%"></el-input></el-form-item>
       <el-form-item label="检验结果"><el-input v-model="prerecord.testResult" placeholder="检验结果" style="width:40%"></el-input></el-form-item>
-    </el-form> -->
+    </el-form>
     <div style="margin-left:-20px;margin-bottom:30px">
       <el-tag>评估诊断:</el-tag>
       <el-card style="width:85%">
@@ -124,10 +124,12 @@ export default {
 
     },
     getmedicineDiseIdList(){
+      //常用诊断项目
       selectByType({staffId:this.$store.getters.id,selectType:2}).then(res=>{
         this.medicineDiseIdList = res.data.medicineDiseList
       })
     },
+    //提交
     submitdefinite(){
       this.prerecord.definiteDiseStrList = ''
       this.record.forEach(item=>{
@@ -147,6 +149,7 @@ export default {
         
       })
     },
+    //删除
     deleteDis(row){
       this.record=this.record.filter(item=>{
         if(item.id===row.id)
@@ -154,6 +157,7 @@ export default {
         return true
       })
     },
+    //从常用诊断添加诊断
     selectDis(val){
       this.$confirm('是否添加 '+val.name+' 到该患者?', '添加诊断', {
           confirmButtonText: '确认',
@@ -173,17 +177,19 @@ export default {
           this.dialogTableVisible = false
         })
     },
+    //点击添加诊断
     addDis(){
       this.dialogTableVisible=true
       this.getDis()
     },
+    //获取诊断列表
     async getDis(){
       const res = await getDmsDislist(this.disQuery)
       this.disList = res.data.list
       this.total = res.data.total
     },
     getnonend(){
-      getnonend(this.patient.registrationId).then(res=>{
+      getnonend(this.patient.registrationId).then(res=>{//获取病人诊断
         this.prerecord = res.data.dmsCaseHistoryList[0]
         parseList(this.prerecord.priliminaryDiseIdList).then(res=>{
           this.record = res.data

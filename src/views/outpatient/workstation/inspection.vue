@@ -255,6 +255,7 @@ export default {
       })
     },
     showresult(row){
+      console.log(row)
       this.checkresult = row.checkResult
       row.resultImgUrlList.split(',').forEach(item=>{
         this.checkresultimg.push(item)
@@ -396,7 +397,7 @@ export default {
       console.log(666)
       this.record.forEach(item=>{
         if(item.id===this.check.id){
-          item.aim = this.check.aim
+          item.aim = this.check.aimaim
           item.demand = this.check.demand
           item.clinicalImpression = this.check.clinicalImpression
           item.clinicalDiagnosis = this.check.clinicalDiagnosis
@@ -409,7 +410,7 @@ export default {
       this.demandVisible = true
       this.check = deepClone(row)
     },
-    //检查列表项目 添加常用诊断项时候的列表
+  
     async getNondrugList() {
       const response = await getNondrugList(this.listQuery)
       console.log(response)

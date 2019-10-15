@@ -106,7 +106,7 @@
             <el-table-column label="药品名" prop="name"></el-table-column>
             <el-table-column label="价格(元)" prop="price" width="100px"></el-table-column>
           </el-table>
-          <pagination layout="prev, pager, next" auto-scroll="false" style="margin-top:0px" :spage-sizes="[]"  v-show="total>0" :total="total" :page.sync="page.pageNum" :limit.sync="page.pageSize" @pagination="getdrugList" />
+          <pagination layout="prev, pager, next" :auto-scroll="false" style="margin-top:0px" :spage-sizes="[]"  v-show="total>0" :total="total" :page.sync="page.pageNum" :limit.sync="page.pageSize" @pagination="getdrugList" />
         <div>
         </div>
       </el-aside>
@@ -246,6 +246,7 @@ export default {
 
     },
     addmodel(val){
+      console.log(val)
       val.amount = Math.floor((val.amount+0.5)*100)/100
       val.status = -1
       this.prescriptionList.push(val)
@@ -265,6 +266,9 @@ export default {
       data.pageNum = 1
       data.isAdmin = 0
       listModel(data).then(res=>{
+       
+        // console.log(res.data.list)
+        // debugger;/s
         this.models = res.data.list
         this.models.forEach(model=>{
           model.druglist = []
@@ -272,6 +276,7 @@ export default {
           model.dmsMedicineModelItemList.forEach(item=>{
             let data = {}
             selectById(item.id).then(res=>{
+              console.log("药品模板"+res)
               data = res.data
               data.days = item.days
               data.frequency = item.frequency
@@ -360,6 +365,7 @@ export default {
     },
     async apply(){
       let data = this.refs[0]
+      console.log(data);
       data.createStaffId = this.$store.getters.id
       data.registrationId = this.patient.registrationId
       data.dmsMedicineItemRecordList = data.druglist
