@@ -78,7 +78,7 @@
           <p><b>模板目的：</b>{{model.aim}}</p>
           <p><b>模板总金额: </b>{{model.amount}}</p>
           <p><b>模板项目：</b></p>
-          <p v-for="(drug,index) in model.druglist" :key="index"><b></b> {{drug.name}}</p>
+          <p v-for="(drug,index) in model.druglist" :key="drug.id+'index'"><b></b> {{drug.name}}</p>
         </el-card>
      </el-tab-pane>
     </el-tabs>
@@ -165,7 +165,7 @@
         <el-table-column label="频次" width="130px">
           <template slot-scope="scope">
             <el-select v-model="scope.row.frequency" placeholder="" style="width:120px">
-              <el-option  v-for="item in [{key:1,label:'一天一次'},{key:2,label:'一天三次'}]" :key="item.key" :label="item.label" :value="item.key" ></el-option>
+              <el-option  v-for="item in [{key:1,label:'一天一次'},{key:2,label:'一天三次'}]" :key="item.label" :label="item.label" :value="item.key" ></el-option>
             </el-select>
           </template>
         </el-table-column>
@@ -177,7 +177,7 @@
         <el-table-column label="单位" width="130px">
           <template slot-scope="scope">
             <el-select v-model="scope.row.usageNumUnit" placeholder="" style="width:120px">
-              <el-option  v-for="item in [{key:1,label:'片'},{key:2,label:'支'},{key:3,label:'瓶'},{key:2,label:'克'}]" :key="item.key" :label="item.label" :value="item.key" ></el-option>
+              <el-option  v-for="item in [{key:1,label:'片'},{key:2,label:'支'},{key:3,label:'瓶'},{key:2,label:'克'}]" :key="item.label" :label="item.label" :value="item.key" ></el-option>
             </el-select>
           </template>
         </el-table-column>
@@ -262,15 +262,23 @@ export default {
     this.listModel()
   },
   methods:{
-        addmodel(val){
+    addmodel(val){
       val.amount = Math.floor((val.amount+0.5)*100)/100
       val.status =-1
+      //此处需要判断是否存在该处方
       this.prescriptionList.push(val)
     },
     handleClick(){
 
     },
     getDrugPrescription(){
+      let data = {}
+      data.registrationId = this.$store.getters.id
+      data.type = 5
+      getDrugPrescription(data).then(res=>{ 
+        // this.prescriptionList.push(res.data)
+        this.prescriptionList = res.data; //这里应该将暂存对比列表里面的合并一下
+      })
 
     },
     selectmodel(val){
@@ -367,9 +375,15 @@ export default {
       })
     },
     invalid(){
-      let data = this.refs[0]
-      
-      invalid(data.dmsHerbalItemRecordResultList[0].prescriptionId).then(res=>{
+      // let data = this.refs[0]
+
+      let data =''
+      this.refs.forEach((item)=>{
+        data+=item.id+","
+      });
+      data= data.substring(0,data.length-1);
+      invalid(data).then(res=>{
+      // invalid(data.dmsHerbalItemRecordResultList[0].prescriptionId).then(res=>{
         this.$notify({
           title: '成功',
           message: res.message,

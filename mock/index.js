@@ -7,6 +7,7 @@ import article from './article'
 import search from './remote-search'
 import department from './department'
 import showMock from './showMock'
+import outPatient from './outPatient';
 
 const mocks = [
   ...user,
@@ -14,7 +15,8 @@ const mocks = [
   ...article,
   ...search,
   ...department,
-  ...showMock
+  ...showMock,
+  ...outPatient
 ]
 
 // for front mock
