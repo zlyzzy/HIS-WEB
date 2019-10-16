@@ -342,7 +342,7 @@ export default [
       })
     }
   }, {
-    url: '/nonDrugItemRecord/apply',   //开立项目
+    url: '/nonDrugItemRecord/apply',   //开立项目 -- 处置申请开立项目，检查，检验开立项目申请
     type: 'post',
     response: config => {
       return Mock.mock({
@@ -524,6 +524,32 @@ export default [
       })
     }
     
+  },{
+    url: '/nonDrugItemRecord/invalid', //invalid 作废处置申请
+    type: 'post',
+    response: config => {
+      return Mock.mock({
+        code: 0
+      })
+    }
+    
+  },{ // 患者账单
+    url:'/feeQuery/listByRegistration',
+    type:'post',
+    response: config => {
+      return Mock.mock({
+        code: 0,
+        'data|10':[{
+          itemName:'@csentence(6)',
+          format:'规格',
+          'currentNum|10-100':10,
+          'price|10-100':10,
+          'totalprice|100-1000':100,
+          'type|0-5':0,
+          'status|0-6':0
+        }]
+      })
+    }
   }
 ]
 
