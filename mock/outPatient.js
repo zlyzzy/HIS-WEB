@@ -120,6 +120,7 @@ export default [
         data: {
           'staffList|10-100': [{
             priliminaryDiseStrList: ['疾病1', '疾病2', '疾病3', '疾病14'],
+            priliminaryDiseIdList:[1,2,3,4], //诊断id
             name: "@csentence(5)",//病历名称
             dis: '"@csentence(5)',//主要诊断
             chiefComplaint: Mock.Random.cparagraph(),//主述：
@@ -550,6 +551,82 @@ export default [
         }]
       })
     }
+  },
+  {
+    url:'/DmsCaseModel/listModelCatTree', //病历模板数据
+    type:'post',
+    response: config => {
+      return Mock.mock({
+        code: 0,
+        data:[{
+          name:"感冒诊断模板目录",
+          id:1,
+          type:1,
+          children:[{
+            name:"感冒子目录1-1",
+            id:11,
+            type:1,
+            children:[{
+              name:"感冒子目录1-1-1",
+              id:111,
+              type:1,
+              children:[{
+                name:"感冒模板",
+                id:1111,
+                type:2,
+                modelId:1
+              }]
+            }]
+          }]
+        }]
+      })
+    }
+   
+  },{
+    url:'/DmsCaseModel/getModelDetail/*', //获取病历模板详情
+    type:'get',
+    response: config => {
+      return Mock.mock({
+        code:0,
+        data:{
+          priliminaryDiseIdList:[1,2,3,4], //诊断id
+          priliminaryDiseStrList: ['疾病1', '疾病2', '疾病3', '疾病14'],
+          name: "@csentence(5)",//病历名称
+          dis: '"@csentence(5)',//主要诊断
+          chiefComplaint: Mock.Random.cparagraph(),//主述：
+          historyOfPresentIllness: Mock.Random.cparagraph(),//现病史：
+          historyOfTreatment: Mock.Random.cparagraph(),//现病治疗情况
+          pastHistory: Mock.Random.cparagraph(),//既往史：
+          allergies: Mock.Random.cparagraph(),//过敏史：
+          healthCheckup: Mock.Random.cparagraph()
+        }
+      })
+    }
+  },{
+    url:'/DmsCaseModel/updateModel', //修改病历模板详情保存
+    type:'post',
+    response: config => {
+      return Mock.mock({
+        code:0
+      })
+    }
+  },{
+    url:'/DmsCaseModel/create', //新增模板/目录
+    type:'post',
+    response: config => {
+      return Mock.mock({
+        code:0
+      })
+    }
+  },{
+    url:'/DmsCaseModel/deleteModelOrCat', //删除病历模板/目录
+    type:'post',
+    response: config => {
+      return Mock.mock({
+        code:0
+      })
+    }
+   
   }
 ]
 

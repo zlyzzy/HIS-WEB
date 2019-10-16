@@ -22,14 +22,14 @@
                 v-show="showCheck&&data.type===1"
                   type="text"
                   size="mini"
-                  @click="() => appendnode(data)">
+                  @click.stop="() => appendnode(data)">
                   增加
                 </el-button>
                 <el-button
                   v-show="showCheck"
                   type="text"
                   size="mini"
-                  @click="() => remove(node, data)">
+                  @click.stop="() => remove(node, data)">
                   删除
                 </el-button>
               </span>
@@ -104,7 +104,7 @@
       <div style="height:520px">
       <span>搜索诊断</span>
       <el-input style="width:200px" placeholder="搜索诊断" v-model="disQuery.name" @change="getDis"></el-input>
-      <el-table highlight-current-row @row-click="selectDis" :data="disList " style="margin-top:20px">
+      <el-table height="390" highlight-current-row @row-click="selectDis" :data="disList " style="margin-top:20px">
         <el-table-column property="icd" label="ICD编码" width="150"></el-table-column>
         <el-table-column property="name" label="名称" width="350"></el-table-column>
         <el-table-column property="code" label="编码" width="200"></el-table-column>

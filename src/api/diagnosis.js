@@ -1,12 +1,12 @@
 import request from '@/utils/request'
-export function getDmscatlist() {
+export function getDmscatlist() {//--
   return request({
     url: '/DmsDiseCatalog/listAll',
     method: 'post'
   })
 }
 
-export function getDmsDislist(data) {
+export function getDmsDislist(data) {//===
   return request({
     url: '/DmsDise/list',
     method: 'get',
