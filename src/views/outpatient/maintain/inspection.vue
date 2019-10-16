@@ -250,7 +250,7 @@ export default {
           duration: 2000
         })
     },
-    getAllNondrug(){
+    getAllNondrug(){///DmsNonDrug/listAll
       getAllNondrug().then(res=>{
         this.alldrugList = res.data
         this.alldrugList.forEach(item=>{
@@ -289,6 +289,8 @@ export default {
         this.edit = 0
     },
     editModel(row){
+      console.log(row.nonDrugIdList)
+      console.log(this.alldrugList)
       this.choices = deepClone(row.nonDrugIdList)
       this.nondrugList = this.alldrugList.filter(item=>{
         if(row.nonDrugIdList.includes(item.id))
@@ -296,7 +298,7 @@ export default {
       })
       this.model = deepClone(row)
       console.log("inspection_检查") 
-      console.log(this.model)
+      console.log(this.nondrugList)
       this.model.createTime = parseTime(this.model.createTime)
       this.showaside('edit')
     }

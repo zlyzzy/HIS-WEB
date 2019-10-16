@@ -174,15 +174,15 @@ export default [
       return Mock.mock({
         code: 0,
         data: {
-          'list|1-10': [{
-            id: '@increment',
+          'list|10': [{
+            'id|1-10': 1,
             'name': '@csentence(5)',//模板名称
             'price|10-100': 10,
             'aim': Mock.Random.cparagraph(),
             'code': '@string("number", 6)',
             'scope|0-2': 0,
             'type|0-2': 0,
-            'nonDrugIdList': [1, 2, 3]
+            'nonDrugIdList': [1, 2, 3,4,5,6,7,8,9,10]
           }],
           total: 10
         }
@@ -620,6 +620,52 @@ export default [
     }
   },{
     url:'/DmsCaseModel/deleteModelOrCat', //删除病历模板/目录
+    type:'post',
+    response: config => {
+      return Mock.mock({
+        code:0
+      })
+    }
+   
+  },
+
+  {
+    url:'/DmsNonDrug/listAll', //所有项目列表--非药品
+    type:'post',
+    response: config => {
+      return Mock.mock({
+        code:0,
+        'data|10':[{
+          code:'@string("number", 6)',
+          name:"@csentence(4)",
+          'id':'@increment',
+          'recordType|1-3':1,
+          'format':'规格',
+          'price|200-2000':100,
+          'expClassId':'所属费用科目'
+        }]
+      })
+    }
+    
+  },{
+    url:'/NonDrugModel/deleteModel', //删除非药品模板
+    type:'post',
+    response: config => {
+      return Mock.mock({
+        code:0
+      })
+    }
+    
+  },{
+    url:'/NonDrugModel/createModel', //创建非药品模板
+    type:'post',
+    response: config => {
+      return Mock.mock({
+        code:0
+      })
+    }
+  },{
+    url:'/NonDrugModel/updateModel', //修改非药品模板
     type:'post',
     response: config => {
       return Mock.mock({
