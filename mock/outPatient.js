@@ -673,6 +673,54 @@ export default [
       })
     }
    
+  },
+  {
+    url:'/drugModel/updateModel', //修改成、草药药品模板
+    type:'post',
+    response: config => {
+      return Mock.mock({
+        code:0
+      })
+    }
+   
+  },{
+    url:'/drugModel/createModel', //创建成、草药药品模板
+    type:'post',
+    response: config => {
+      return Mock.mock({
+        code:0
+      })
+    }
+    
+  },{
+    url:'/drugModel/deleteModel', //删除成、草药药品模板
+    type:'post',
+    response: config => {
+      return Mock.mock({
+        code:0
+      })
+    }
+
+    
+  },{
+    url:'/frequentUsed/add', //添加常用项
+    type:'post',
+    response: config => {
+      return Mock.mock({
+        code:0
+      })
+    }
+    
+  },{
+    url:'/frequentUsed/delete', //删除常用项
+    type:'post',
+    response: config => {
+      return Mock.mock({
+        code:0
+      })
+    }
+
+    
   }
 ]
 

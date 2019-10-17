@@ -18,7 +18,7 @@
             </el-form-item>
             <el-form-item label="范围:" style="width:280px">
               <el-select placeholder="请选择范围" v-model="listQuery.scope" clearable style="width: 130px" class="filter-item">
-               <el-option v-for="item in [{key:0,value:'个人'},{key:1,value:'科室'},{key:2,value:'全院'}]" :key="item.key" :label="item.value" :value="item.key" />
+               <el-option v-for="item in [{key:0,value:'个人'},{key:1,value:'科室'},{key:2,value:'全院'}]" :key="item.value" :label="item.value" :value="item.key" />
               </el-select>
             </el-form-item>
             <el-form-item style="width:400px">
@@ -169,7 +169,7 @@
             <el-table-column label="频次" width="130px">
           <template slot-scope="scope">
             <el-select v-model="scope.row.frequency" placeholder="" style="width:120px">
-              <el-option  v-for="item in [{key:1,label:'一天一次'},{key:2,label:'一天三次'}]" :key="item.key" :label="item.label" :value="item.key" ></el-option>
+              <el-option  v-for="item in [{key:1,label:'一天一次'},{key:2,label:'一天三次'}]" :key="item.label" :label="item.label" :value="item.key" ></el-option>
             </el-select>
           </template>
         </el-table-column>
@@ -186,7 +186,7 @@
         <el-table-column label="单位" width="130px">
           <template slot-scope="scope">
             <el-select v-model="scope.row.usageNumUnit" placeholder="" style="width:120px">
-              <el-option  v-for="item in [{key:1,label:'片'},{key:2,label:'支'},{key:3,label:'瓶'},{key:2,label:'克'}]" :key="item.key" :label="item.label" :value="item.key" ></el-option>
+              <el-option  v-for="item in [{key:1,label:'片'},{key:2,label:'支'},{key:3,label:'瓶'},{key:2,label:'克'}]" :key="item.label" :label="item.label" :value="item.key" ></el-option>
             </el-select>
           </template>
         </el-table-column>
