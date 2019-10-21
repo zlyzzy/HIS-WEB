@@ -174,7 +174,7 @@ export default [
       return Mock.mock({
         code: 0,
         data: {
-          'list|10': [{
+          'list|100': [{
             'id|1-10': 1,
             'name': '@csentence(5)',//模板名称
             'price|10-100': 10,
