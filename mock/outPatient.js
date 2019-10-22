@@ -721,6 +721,16 @@ export default [
     }
 
     
+  },
+  {
+    url: '/fee/listRefundByRegistrationId',  //退费
+    type: 'get',
+    response: config => {
+      return {
+        code: 0
+      }
+    }
+    
   }
 ]
 

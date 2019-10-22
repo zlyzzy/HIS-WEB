@@ -335,7 +335,7 @@ export const asyncRoutes = [
     meta: {
       title: '门诊日结',
       icon: 'documentation',
-      roles: [5,7]
+     
     },
     children: [
       {
