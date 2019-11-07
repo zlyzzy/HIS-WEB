@@ -444,6 +444,16 @@ export default [
     })
   }
 },
+{
+  url: '/dailySettlement/verifySettle',  //核对
+  type: 'get',
+  response: config => {
+    return Mock.mock({
+      code: 0
+    })
+  }
+  
+}
 // ******************门诊财务mock end**********************//
 
 
